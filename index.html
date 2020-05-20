@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sohbet uygulaması</title>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+    <script type="text/javascript">
+        $(function(){
+
+            var socket = io();
+            function mesajgonderolay(){
+                socket.emit('sohbetmesaj', $('#mesaj').val());
+                $('#mesaj').val('');
+            }
+            socket.on('sohbetmesaj', function(msg){
+                $('#mesajlar').append($('<li>').text(msg));
+            });
+
+            $('#btnmesajgonder').click(mesajgonderolay);
+
+            $('input#mesaj').bind('keypress', function(e) {
+                if(e.keyCode==13){
+                    mesajgonderolay();
+
+                };
+            });
+        })
+    </script>
+</head>
+<body background="http://www.fullhdwpp.com/wp-content/uploads/red-forest-trees-5_www.FullHDWpp.com_.jpg?x69613">
+
+<h2><font color="#fffaf0">Hoş Geldiniz</font></h2>
+
+
+
+
+
+<form method="link" action="http://www.google.com">
+    <input type="submit" value="Lütfen Giriş Yapınız!" button type="button" onclick="alert('looooo')"></button>
+    <button1> </button1>
+</form>
+
+//<h1></h1>
+
+<ul id="mesajlar" type="circle">
+    <h2><font color="#bc8f8f">Mesaj gönderin</font></h2>
+</ul>
+<input type="text" id="mesaj" placeholder="Mesaj yazın"/>
+<button id="btnmesajgonder">Mesaj gönder</button>
+</body>
+</html>
